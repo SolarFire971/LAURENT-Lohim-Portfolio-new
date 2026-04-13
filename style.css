@@ -1,0 +1,177 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: #0f0f13;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BACKGROUND BLOBS */
+.blob {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  animation: move 20s infinite alternate ease-in-out;
+}
+
+.blob:nth-child(1) {
+  background: #ff4e50;
+  top: -200px;
+  left: -200px;
+}
+
+.blob:nth-child(2) {
+  background: #00c9ff;
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 5s;
+}
+
+@keyframes move {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(100px,-100px) scale(1.2); }
+  100% { transform: translate(-100px,100px) scale(1); }
+}
+
+/* CARD */
+.card {
+  position: relative;
+  padding: 3rem;
+  width: 400px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  text-align: center;
+  z-index: 10;
+}
+
+.card h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.card p {
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  background: white;
+  color: black;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+nav {
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+
+/* ===== PAGE A PROPOS ===== */
+
+.about-container {
+  display: flex;
+  gap: 80px;
+  margin: 120px 0;
+  align-items: flex-start;
+}
+
+/* PHOTO */
+
+.about-photo {
+  flex-shrink: 0;
+}
+
+.about-photo img {
+  width: 320px;
+  border-radius: 25px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+/* CONTENU TEXTE */
+
+.about-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Même style que tes cartes projets */
+
+.text-box {
+  padding: 40px;
+  border-radius: 25px;
+  backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease;
+}
+
+.text-box:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo img {
+    width: 240px;
+  }
+
+  .about-content {
+    width: 100%;
+    
+.project-card {
+  position: relative;
+}
+
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.project-card:hover .project-info {
+  opacity: 1;
+}
+  }
+}

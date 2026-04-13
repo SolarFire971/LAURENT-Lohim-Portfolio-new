@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Designer</title>
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: #0f0f13;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BACKGROUND BLOBS */
+.blob {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  animation: move 20s infinite alternate ease-in-out;
+}
+
+.blob:nth-child(1) {
+  background: #ff4e50;
+  top: -200px;
+  left: -200px;
+}
+
+.blob:nth-child(2) {
+  background: #ffd300;
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 5s;
+}
+
+@keyframes move {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(100px,-100px) scale(1.2); }
+  100% { transform: translate(-100px,100px) scale(1); }
+}
+
+/* CARD */
+.card {
+  position: relative;
+  padding: 3rem;
+  width: 400px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  text-align: center;
+  z-index: 10;
+}
+
+.card h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.card p {
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  background: white;
+  color: black;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+</style>
+
+</head>
+<body>
+
+<div class="blob"></div>
+<div class="blob"></div>
+
+<div class="card">
+  <h1>LAURENT Lohim</h1>
+  <p>Web Designer & Creative Developer</p>
+  <a href="Profile.html" class="btn">Voir mon profil</a>
+</div>
+
+</body>
+</html>

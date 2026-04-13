@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>À propos</title>
+
+<style>
+
+/* ===== VARIABLES ===== */
+
+:root {
+  --bg: #0f0f13;
+  --text: white;
+  --card-bg: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.1);
+}
+
+.theme-dark {
+  --bg: #ffffff;
+  --text: #111;
+  --card-bg: rgba(0,0,0,0.05);
+  --border: rgba(0,0,0,0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding: 0 10%;
+}
+    
+/* ================= RESET ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding: 0 10%;
+  overflow-x: hidden;
+}
+
+/* ================= BACKGROUND ================= */
+
+.blob {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+  animation: move 20s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+.blob:nth-child(1) {
+  background: #ff4e50;
+  top: -200px;
+  left: -200px;
+}
+
+.blob:nth-child(2) {
+  background: #00c9ff;
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 5s;
+}
+
+@keyframes move {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(100px,-100px) scale(1.2); }
+  100% { transform: translate(-100px,100px) scale(1); }
+}
+
+/* ===== HEADER ===== */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+  position: relative;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#nav {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#nav ul {
+  list-style: none;
+}
+
+#nav li {
+  margin: 10px 0;
+}
+
+#nav a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ===== PAGE A PROPOS ===== */
+
+.about-container {
+  display: flex;
+  gap: 80px;
+  margin: 120px 0;
+  align-items: flex-start;
+}
+
+.about-photo img {
+  width: 320px;
+  border-radius: 25px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.about-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.text-box {
+  padding: 40px;
+  border-radius: 25px;
+  backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo img {
+    width: 240px;
+  }
+}
+  
+/* Conteneur des contrôles header */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ================= TOGGLE THEME ================= */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Le slider (fond du toggle) */
+.theme-switch .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  transition: 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+/* Le rond qui bouge */
+.theme-switch .slider:before {
+  position: absolute;
+  content: "🌙";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s ease;
+  font-size: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Quand la case est cochée (mode sombre activé) */
+.theme-switch input:checked + .slider:before {
+  transform: translateX(28px);
+  content: "☀️";
+  background-color: #ffde6e;
+}
+
+/* Fond du toggle quand mode sombre activé */
+.theme-switch input:checked + .slider {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: #ffde6e;
+}
+
+footer {
+  text-align: center;
+  margin: 80px 0 40px;
+  opacity: 0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>À propos</h1>
+
+<div class="header-controls">
+  <label class="theme-switch" aria-label="Changer de thème">
+    <input type="checkbox" id="themeToggle">
+    <span class="slider"></span>
+  </label>
+  <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
+</div>
+
+<nav id="nav" hidden>
+  <ul>
+    <li><a href="Profile.html">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="Contact.html">Contact</a></li>
+    
+  </ul>
+</nav>
+
+</header>
+
+<main>
+
+<section class="about-container">
+
+  <div class="about-photo">
+    <img src="images/PersonnalImages/The%20sun.png" alt="Photo de profil">
+  </div>
+
+  <div class="about-content">
+
+    <div class="text-box">
+      <h2>Présentation</h2>
+      <p>Passionné par la création numérique depuis mon plus jeune âge, C'est en suivant ce désir de créer que j'ai guidé mon parcours scolaire vers une vois me permettant de pouvoir continuer de pouvoir créer</p>
+    </div>
+
+    <div class="text-box">
+      <h2>Compétence</h2>
+      <p>Durant de nombreuses années, j'ai commencé a étudier l'animation 3D avec l'aide de Mine-Imator, un logiciel ayant forgé mes début dans ce monde créatif. Puis, par la suite, j'ai commencé a apprendre la programmation à l'aide de certaines base comme le HTML et le CSS. Deux outil pour la conception du front-end des sites internets.</p>
+    </div>
+
+    <div class="text-box">
+      <h2>Mes qualités</h2>
+      <p>Je suis quelqu'un qui se décrirait comme pouvant être polyvalent, capable d'apprendre les choses vites une fois que je désire vraiment les connaîtres.</p>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <small>© <span id="annee"></span> LAURENT Lohim</small>
+</footer>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Année
+  document.getElementById('annee').textContent = new Date().getFullYear();
+
+  // Thème sombre
+  const toggle = document.getElementById("themeToggle");
+  toggle.addEventListener("change", function() {
+    document.documentElement.classList.toggle("theme-dark", this.checked);
+  });
+
+  // Burger
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("nav");
+
+  burger.addEventListener("click", function() {
+    const expanded = this.getAttribute("aria-expanded") === "true";
+    this.setAttribute("aria-expanded", !expanded);
+    nav.hidden = expanded;
+  });
+
+});
+
+</script>
+
+</body>
+</html>

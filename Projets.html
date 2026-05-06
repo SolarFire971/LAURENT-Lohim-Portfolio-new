@@ -68,6 +68,10 @@ body {
   line-height: 1.7;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 /* ================= BACKGROUND ================= */
 
 .blob {
@@ -103,29 +107,79 @@ body {
 /* ================= HEADER ================= */
 
 header {
-  padding: 40px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 40px 0;
   position: relative;
 }
 
-h1 {
+.header-left {
+  width: 80px;
+}
+
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.header-center h1 {
   font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
   font-size: 2.2rem;
   font-weight: 900;
-  position: relative;
+  white-space: nowrap;
 }
 
-h1::after {
+.nom {
+  color: var(--red);
+}
+
+.prenom {
+  color: var(--yellow);
+}
+
+.theme-dark .nom {
+  color: #cc0000;
+}
+
+.theme-dark .prenom {
+  color: #e6a800;
+}
+
+.header-center h1::after {
   content: '';
   position: absolute;
   bottom: -8px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 60%;
   height: 3px;
   background: linear-gradient(90deg, var(--red), var(--yellow));
   border-radius: 2px;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: var(--yellow);
+  color: black;
+  border-color: var(--yellow);
+  transform: translateX(-3px);
 }
 
 .btn {
@@ -143,7 +197,7 @@ h1::after {
   transform: scale(1.05);
 }
 
-nav {
+#nav {
   position: absolute;
   top: 100%;
   right: 0;
@@ -158,14 +212,14 @@ nav {
   z-index: 100;
 }
 
-nav ul {
+#nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-nav a {
+#nav a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
@@ -173,11 +227,11 @@ nav a {
   transition: color 0.3s;
 }
 
-nav a:hover {
+#nav a:hover {
   color: var(--yellow);
 }
 
-nav a.actif {
+#nav a.actif {
   font-weight: bold;
   color: var(--yellow);
   border-left: 3px solid var(--yellow);
@@ -189,89 +243,10 @@ nav a.actif {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Conteneur des contrôles header */
 .header-controls {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-
-/* ================= SECTION PROJET ================= */
-
-.project-section {
-  margin: 80px 0;
-  padding: 50px;
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.project-section:hover {
-  border-color: var(--yellow);
-}
-
-.project-section h2 {
-  margin-bottom: 30px;
-  font-size: 1.8rem;
-  font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
-  position: relative;
-  display: inline-block;
-}
-
-.project-section h2::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--yellow));
-  border-radius: 2px;
-}
-
-.horizontal-scroll {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 20px;
-  padding-top: 10px;
-}
-
-.horizontal-scroll img {
-  width: 400px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 15px;
-  scroll-snap-align: start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0;
-}
-
-.horizontal-scroll img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
-}
-
-/* Scrollbar horizontale stylée */
-.horizontal-scroll::-webkit-scrollbar {
-  height: 10px;
-}
-
-.horizontal-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, var(--red), var(--yellow));
-  border-radius: 10px;
-}
-
-.horizontal-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #ff3333, #ffdd44);
 }
 
 /* ================= TOGGLE THEME ================= */
@@ -330,6 +305,245 @@ nav a.actif {
   border-color: #ffde6e;
 }
 
+/* ================= FILTRES ================= */
+
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 40px 0;
+  justify-content: center;
+}
+
+.filtre-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filtre-btn:hover {
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.filtre-btn.actif {
+  background: linear-gradient(135deg, var(--red), #ff6a00);
+  color: white;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+/* ================= GRILLE PROJETS ================= */
+
+.projets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin: 40px 0;
+}
+
+.projet-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  transition: all 0.4s ease;
+}
+
+.projet-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--yellow);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.projet-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.projet-card:hover img {
+  transform: scale(1.05);
+}
+
+.projet-card-body {
+  padding: 20px;
+}
+
+.projet-card-body h3 {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.projet-card-body p {
+  opacity: 0.7;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Labels / badges */
+.projet-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.label {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.label-scolaire { background: #4a90d9; color: white; }
+.label-personnel { background: #7b4fbf; color: white; }
+.label-animation { background: #e8852d; color: white; }
+.label-image { background: #2d9e5a; color: white; }
+.label-video { background: #d94040; color: white; }
+
+/* Overlay au hover */
+.projet-card .projet-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projet-card:hover .projet-overlay {
+  opacity: 1;
+}
+
+.projet-overlay span {
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-content {
+  display: flex;
+  gap: 50px;
+  max-width: 1100px;
+  width: 90%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 10;
+}
+
+.lightbox-close:hover {
+  color: var(--red);
+}
+
+.lightbox-image {
+  flex: 1;
+  min-width: 0;
+}
+
+.lightbox-image img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: contain;
+  max-height: 500px;
+}
+
+.lightbox-infos {
+  flex: 0 0 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lightbox-infos h2 {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.lightbox-infos h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+  border-radius: 2px;
+}
+
+.lightbox-infos p {
+  opacity: 0.8;
+  line-height: 1.8;
+}
+
+.lightbox-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 /* ================= FOOTER ================= */
 
 footer {
@@ -341,54 +555,62 @@ footer {
 
 /* ================= RESPONSIVE ================= */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   body {
     padding: 0 5%;
   }
 
-  .horizontal-scroll img {
-    width: 300px;
-    height: 200px;
+  .lightbox-content {
+    flex-direction: column;
+    padding: 25px;
+    gap: 25px;
   }
 
-  .project-section {
-    padding: 30px;
+  .lightbox-infos {
+    flex: 1;
+  }
+
+  .lightbox-image img {
+    max-height: 300px;
+  }
+
+  .projets-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-center h1 {
+    font-size: 1.5rem;
+  }
+  
+  .header-center {
+    position: static;
+    transform: none;
+  }
+  
+  header {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .header-left {
+    order: 1;
+    width: auto;
+  }
+  
+  .header-center {
+    order: 2;
+    width: 100%;
+  }
+  
+  .header-controls {
+    order: 3;
   }
 }
 
 </style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-
-  // Année automatique
-  const annee = document.getElementById('annee');
-  if (annee) {
-    annee.textContent = new Date().getFullYear();
-  }
-
-  // Theme toggle
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('change', function(e) {
-      document.documentElement.classList.toggle('theme-dark', e.target.checked);
-    });
-  }
-
-  // Burger menu
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('nav');
-
-  if (burger && nav) {
-    burger.addEventListener('click', function() {
-      const isExpanded = burger.getAttribute('aria-expanded') === "true";
-      burger.setAttribute('aria-expanded', !isExpanded);
-      nav.hidden = isExpanded;
-    });
-  }
-
-});
-</script>
 </head>
 
 <body>
@@ -398,7 +620,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <header>
 
-  <h1>Mes Projets</h1>
+  <div class="header-left">
+    <a href="Profile.html" class="btn-back" title="Retour à l'accueil" aria-label="Retour">←</a>
+  </div>
+
+  <div class="header-center">
+    <h1><span class="nom">LAURENT</span> <span class="prenom">Lohim</span></h1>
+  </div>
 
   <div class="header-controls">
     <label class="theme-switch" aria-label="Changer de thème">
@@ -420,34 +648,249 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <main>
 
-  <section class="project-section">
-    <h2>Personnal work</h2>
-    <div class="horizontal-scroll">
-      <img src="cafe.png" alt="Café">
-      <img src="do-not.png" alt="Do not">
-      <img src="its-you.png" alt="It's you">
-      <img src="remember-better-quality.png" alt="Remember">
-      <img src="perspective-2.png" alt="Perspective">
-      <img src="wasgood-2.png" alt="Wasgood 2">
-      <img src="wasgood-alt.png" alt="Wasgood alt">
-    </div>
-  </section>
+  <!-- ========== FILTRES ========== -->
+  <div class="filtres">
+    <button class="filtre-btn actif" data-filtre="tous">Tous</button>
+    <button class="filtre-btn" data-filtre="scolaire">🎓 Scolaire</button>
+    <button class="filtre-btn" data-filtre="personnel">✨ Personnel</button>
+    <button class="filtre-btn" data-filtre="animation">🎬 Animation</button>
+    <button class="filtre-btn" data-filtre="image">🖼️ Image</button>
+    <button class="filtre-btn" data-filtre="video">🎥 Vidéo</button>
+  </div>
 
-  <section class="project-section">
-    <h2>Projet Web</h2>
-    <div class="horizontal-scroll">
-      <img src="Plan.png" alt="Plan">
-      <img src="ohwow.png" alt="Oh wow">
-      <img src="Sunset.png" alt="Sunset">
-      <img src="Target.png" alt="Target">
+  <!-- ========== GRILLE PROJETS ========== -->
+  <div class="projets-grid" id="projetsContainer">
+
+    <!-- PROJET 1 — Scolaire + Image -->
+    <div class="projet-card" data-categories="scolaire image" data-id="1">
+      <img src="plan.png" alt="Plan JPO">
+      <div class="projet-overlay"><span>Voir le projet</span></div>
+      <div class="projet-card-body">
+        <h3>Plan de JPO</h3>
+        <p>Plan interactif pour les Journées Portes Ouvertes.</p>
+        <div class="projet-labels">
+          <span class="label label-scolaire">Scolaire</span>
+          <span class="label label-image">Image</span>
+        </div>
+      </div>
     </div>
-  </section>
+
+    <!-- PROJET 2 — Personnel + Image -->
+    <div class="projet-card" data-categories="personnel image" data-id="2">
+      <img src="cafe.png" alt="Café">
+      <div class="projet-overlay"><span>Voir le projet</span></div>
+      <div class="projet-card-body">
+        <h3>Création Café</h3>
+        <p>Design libre, exploration graphique et ambiance.</p>
+        <div class="projet-labels">
+          <span class="label label-personnel">Personnel</span>
+          <span class="label label-image">Image</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJET 3 — Scolaire + Animation -->
+    <div class="projet-card" data-categories="scolaire animation" data-id="3">
+      <img src="ohwow.png" alt="Projet animation">
+      <div class="projet-overlay"><span>Voir le projet</span></div>
+      <div class="projet-card-body">
+        <h3>Projet Animation MMI</h3>
+        <p>Animation 3D réalisée dans le cadre du BUT.</p>
+        <div class="projet-labels">
+          <span class="label label-scolaire">Scolaire</span>
+          <span class="label label-animation">Animation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJET 4 — Personnel + Vidéo -->
+    <div class="projet-card" data-categories="personnel video" data-id="4">
+      <img src="sunset.png" alt="Montage vidéo">
+      <div class="projet-overlay"><span>Voir le projet</span></div>
+      <div class="projet-card-body">
+        <h3>Montage Vidéo</h3>
+        <p>Court-métrage personnel avec étalonnage.</p>
+        <div class="projet-labels">
+          <span class="label label-personnel">Personnel</span>
+          <span class="label label-video">Vidéo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ajoute tes autres projets ici -->
+
+  </div>
 
 </main>
 
+<!-- ========== LIGHTBOX ========== -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-image">
+      <img id="lightboxImg" src="" alt="">
+    </div>
+    <div class="lightbox-infos">
+      <h2 id="lightboxTitre"></h2>
+      <p id="lightboxDesc"></p>
+      <div class="lightbox-labels" id="lightboxLabels"></div>
+    </div>
+  </div>
+</div>
+
 <footer>
-  <small>© <span id="annee"></span> Lohim LAURENT</small>
+  <small>© <span id="annee"></span> Lohim LAURENT — BUT MMI</small>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  // ========== ANNÉE ==========
+  const annee = document.getElementById('annee');
+  if (annee) annee.textContent = new Date().getFullYear();
+
+  // ========== THEME TOGGLE ==========
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('change', function(e) {
+      document.documentElement.classList.toggle('theme-dark', e.target.checked);
+    });
+  }
+
+  // ========== BURGER MENU ==========
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+
+  if (burger && nav) {
+    burger.addEventListener('click', function() {
+      const isHidden = nav.hasAttribute('hidden');
+      if (isHidden) {
+        nav.removeAttribute('hidden');
+        burger.setAttribute('aria-expanded', 'true');
+      } else {
+        nav.setAttribute('hidden', '');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ========== BASE DE DONNÉES DES PROJETS ==========
+  // C'est ici que tu ajoutes les infos détaillées de chaque projet
+  const projetsData = {
+    1: {
+      titre: "Plan de JPO",
+      desc: "Plan interactif conçu pour les Journées Portes Ouvertes du département MMI. L'objectif était de guider les visiteurs à travers les différents espaces de manière intuitive.",
+      labels: ["Scolaire", "Image"],
+      image: "plan.png"
+    },
+    2: {
+      titre: "Création Café",
+      desc: "Design libre explorant l'ambiance chaleureuse d'un café. Travail sur les ombres, la lumière et la composition pour créer une atmosphère accueillante.",
+      labels: ["Personnel", "Image"],
+      image: "cafe.png"
+    },
+    3: {
+      titre: "Projet Animation MMI",
+      desc: "Animation 3D réalisée dans le cadre du BUT MMI. Modélisation, rigging et animation d'un personnage simple avec rendu final en 1080p.",
+      labels: ["Scolaire", "Animation"],
+      image: "ohwow.png"
+    },
+    4: {
+      titre: "Montage Vidéo",
+      desc: "Court-métrage personnel tourné en extérieur. Montage sur Premiere Pro avec étalonnage colorimétrique et sound design original.",
+      labels: ["Personnel", "Vidéo"],
+      image: "sunset.png"
+    }
+    // Ajoute ici les projets supplémentaires
+  };
+
+  // ========== LIGHTBOX ==========
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitre = document.getElementById('lightboxTitre');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  const lightboxLabels = document.getElementById('lightboxLabels');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  const labelsClasses = {
+    "Scolaire": "label-scolaire",
+    "Personnel": "label-personnel",
+    "Animation": "label-animation",
+    "Image": "label-image",
+    "Vidéo": "label-video"
+  };
+
+  // Ouvrir la lightbox au clic sur une carte
+  document.querySelectorAll('.projet-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const id = this.getAttribute('data-id');
+      const projet = projetsData[id];
+      
+      if (!projet) return;
+
+      lightboxImg.src = projet.image;
+      lightboxImg.alt = projet.titre;
+      lightboxTitre.textContent = projet.titre;
+      lightboxDesc.textContent = projet.desc;
+      
+      // Générer les labels
+      lightboxLabels.innerHTML = '';
+      projet.labels.forEach(label => {
+        const span = document.createElement('span');
+        span.className = 'label ' + (labelsClasses[label] || '');
+        span.textContent = label;
+        lightboxLabels.appendChild(span);
+      });
+
+      lightbox.classList.add('active');
+      document.body.classList.add('no-scroll');
+    });
+  });
+
+  // Fermer la lightbox
+  function fermerLightbox() {
+    lightbox.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  }
+
+  lightboxClose.addEventListener('click', fermerLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) fermerLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') fermerLightbox();
+  });
+
+  // ========== FILTRES ==========
+  const filtreBtns = document.querySelectorAll('.filtre-btn');
+  const projetCards = document.querySelectorAll('.projet-card');
+
+  filtreBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Retirer la classe "actif" de tous les boutons
+      filtreBtns.forEach(b => b.classList.remove('actif'));
+      // Ajouter "actif" au bouton cliqué
+      this.classList.add('actif');
+
+      const filtre = this.getAttribute('data-filtre');
+
+      projetCards.forEach(card => {
+        if (filtre === 'tous') {
+          card.style.display = 'block';
+        } else {
+          const categories = card.getAttribute('data-categories');
+          if (categories && categories.includes(filtre)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+
+});
+</script>
 
 </body>
 </html>

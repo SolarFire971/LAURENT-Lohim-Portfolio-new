@@ -478,24 +478,28 @@ footer {
 <div class="blob"></div>
 
 <header>
-  <div>
+  <!-- Bouton retour invisible pour garder l'alignement -->
+  <div class="header-left">
+    <span style="width: 44px; display: block;"></span>
+  </div>
+
+  <div class="header-center">
     <h1><span class="nom">LAURENT</span> <span class="prenom">Lohim</span></h1>
-    <p>Étudiant en BUT MMI</p>
   </div>
 
   <div class="header-controls">
-  <label class="theme-switch" aria-label="Changer de thème">
-    <input type="checkbox" id="themeToggle">
-    <span class="slider"></span>
-  </label>
-  <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
-</div>
+    <label class="theme-switch" aria-label="Changer de thème">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+    <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
+  </div>
 
   <nav id="nav" hidden>
     <ul>
       <li><a href="apropos.html">À propos</a></li>
+      <li><a href="Projets.html">Projets</a></li>
       <li><a href="Contact.html">Contact</a></li>
-      <li><a href="Projets.html">Projet</a></li>
     </ul>
   </nav>
 </header>
@@ -630,7 +634,7 @@ footer {
       <p>Design libre, exploration graphique.</p>
     </div>
     <div class="carte">
-      <img src="plan.png" alt="Projet maquette">
+      <img src="Plan.png" alt="Projet maquette">
       <h3>Plan de JPO</h3>
       <p>Récapitulatif des plans de la JPO.</p>
     </div>

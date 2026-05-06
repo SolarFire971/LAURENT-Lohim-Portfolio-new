@@ -143,29 +143,8 @@ h1::after {
   transform: scale(1.05);
 }
 
-/* Bouton submit stylé */
-.btn-submit {
-  background: linear-gradient(135deg, var(--red), #ff6a00);
-  color: white;
-  padding: 14px 32px;
-  border-radius: 40px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
-  align-self: flex-start;
-}
-
-.btn-submit:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
-  background: linear-gradient(135deg, #ff1a1a, #ff8c00);
-}
-
-nav {
+/* Navigation */
+#nav {
   position: absolute;
   top: 100%;
   right: 0;
@@ -180,14 +159,14 @@ nav {
   z-index: 100;
 }
 
-nav ul {
+#nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-nav a {
+#nav a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
@@ -195,11 +174,11 @@ nav a {
   transition: color 0.3s;
 }
 
-nav a:hover {
+#nav a:hover {
   color: var(--yellow);
 }
 
-nav a.actif {
+#nav a.actif {
   font-weight: bold;
   color: var(--yellow);
   border-left: 3px solid var(--yellow);
@@ -442,6 +421,28 @@ nav a.actif {
   min-height: 140px;
 }
 
+/* Bouton submit */
+.btn-submit {
+  background: linear-gradient(135deg, var(--red), #ff6a00);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  align-self: flex-start;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff1a1a, #ff8c00);
+}
+
 /* Feedback message */
 .form-feedback {
   margin-top: 20px;
@@ -487,70 +488,6 @@ footer {
 
 </style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-
-  // Année automatique
-  const annee = document.getElementById('annee');
-  if (annee) {
-    annee.textContent = new Date().getFullYear();
-  }
-
-  // Theme toggle
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('change', function(e) {
-      document.documentElement.classList.toggle('theme-dark', e.target.checked);
-    });
-  }
-
-  // Burger menu
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('nav');
-
-  if (burger && nav) {
-    burger.addEventListener('click', function() {
-      const isExpanded = burger.getAttribute('aria-expanded') === "true";
-      burger.setAttribute('aria-expanded', !isExpanded);
-      nav.hidden = isExpanded;
-    });
-  }
-
-  // Animation section
-  const section = document.querySelector('.contact-section');
-  if (section) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.2 });
-    observer.observe(section);
-  }
-
-  // Gestion du formulaire
-  const form = document.querySelector('form');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const existingMsg = document.querySelector('.form-feedback');
-      if (existingMsg) existingMsg.remove();
-      
-      const feedback = document.createElement('div');
-      feedback.className = 'form-feedback';
-      feedback.textContent = '✅ Message envoyé avec succès ! (démo)';
-      form.appendChild(feedback);
-      
-      form.reset();
-      
-      setTimeout(() => feedback.remove(), 4000);
-    });
-  }
-
-});
-</script>
 </head>
 
 <body>
@@ -582,7 +519,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   <section class="contact-section">
     <h2>Me contacter</h2>
-    <p style="margin-bottom: 20px; opacity: 0.8; font-size: 1.2rem;">
+    <p style="margin-bottom: 30px; opacity: 0.8; font-size: 1.2rem;">
       Une question, un projet, une collaboration ? Écris-moi et je te répondrai dès que possible.
     </p>
 
@@ -652,6 +589,87 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer>
   <small>© <span id="annee"></span> Lohim LAURENT — BUT MMI</small>
 </footer>
+
+<script>
+
+// Attendre que le DOM soit chargé
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Année automatique
+  const annee = document.getElementById('annee');
+  if (annee) {
+    annee.textContent = new Date().getFullYear();
+  }
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('change', function(e) {
+      document.documentElement.classList.toggle('theme-dark', e.target.checked);
+    });
+  }
+
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+
+  if (burger && nav) {
+    burger.addEventListener('click', function() {
+      const isHidden = nav.hasAttribute('hidden');
+      
+      if (isHidden) {
+        nav.removeAttribute('hidden');
+        burger.setAttribute('aria-expanded', 'true');
+      } else {
+        nav.setAttribute('hidden', '');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Animation section au scroll
+  const section = document.querySelector('.contact-section');
+  if (section) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(section);
+  }
+
+  // Gestion du formulaire
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Supprimer l'ancien message de feedback
+      const existingMsg = document.querySelector('.form-feedback');
+      if (existingMsg) existingMsg.remove();
+      
+      // Afficher le message de confirmation
+      const feedback = document.createElement('div');
+      feedback.className = 'form-feedback';
+      feedback.textContent = '✅ Message envoyé avec succès ! (démo)';
+      form.appendChild(feedback);
+      
+      // Réinitialiser le formulaire
+      form.reset();
+      
+      // Faire disparaître le message après 4 secondes
+      setTimeout(function() {
+        feedback.remove();
+      }, 4000);
+    });
+  }
+
+});
+
+</script>
 
 </body>
 </html>

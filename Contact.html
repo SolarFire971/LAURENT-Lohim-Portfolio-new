@@ -136,10 +136,33 @@ h1::after {
   border: none;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
 }
 
 .btn:hover {
   transform: scale(1.05);
+}
+
+/* Bouton submit stylé */
+.btn-submit {
+  background: linear-gradient(135deg, var(--red), #ff6a00);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  align-self: flex-start;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff1a1a, #ff8c00);
 }
 
 nav {
@@ -187,7 +210,7 @@ nav a.actif {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-  
+
 /* Conteneur des contrôles header */
 .header-controls {
   display: flex;
@@ -196,6 +219,7 @@ nav a.actif {
 }
 
 /* ================= TOGGLE THEME ================= */
+
 .theme-switch {
   position: relative;
   display: inline-block;
@@ -210,7 +234,6 @@ nav a.actif {
   height: 0;
 }
 
-/* Le slider (fond du toggle) */
 .theme-switch .slider {
   position: absolute;
   top: 0;
@@ -223,7 +246,6 @@ nav a.actif {
   border: 1px solid var(--border);
 }
 
-/* Le rond qui bouge */
 .theme-switch .slider:before {
   position: absolute;
   content: "🌙";
@@ -241,62 +263,42 @@ nav a.actif {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-/* Quand la case est cochée (mode sombre activé) */
 .theme-switch input:checked + .slider:before {
   transform: translateX(28px);
   content: "☀️";
   background-color: #ffde6e;
 }
 
-/* Fond du toggle quand mode sombre activé */
 .theme-switch input:checked + .slider {
   background-color: rgba(0, 0, 0, 0.3);
   border-color: #ffde6e;
 }
 
-/* ================= BREADCRUMB ================= */
+/* ================= SECTION CONTACT ================= */
 
-.breadcrumb {
-  margin: 40px 0;
-  opacity: 0.7;
-}
-
-.breadcrumb ol {
-  list-style: none;
-  display: flex;
-  gap: 10px;
-}
-
-.breadcrumb a {
-  text-decoration: none;
-  color: var(--text);
-}
-
-/* ================= SECTION ================= */
-
-section {
+.contact-section {
   margin: 80px 0;
   padding: 50px;
   border-radius: 20px;
   backdrop-filter: blur(20px);
   background: var(--card-bg);
   border: 1px solid var(--border);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.3s ease;
   opacity: 0;
   transform: translateY(60px);
   transition: 1s ease;
 }
 
-section:hover {
-  border-color: var(--yellow);
-}
-
-section.show {
+.contact-section.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-section h2 {
+.contact-section:hover {
+  border-color: var(--yellow);
+}
+
+.contact-section h2 {
   margin-bottom: 30px;
   font-size: 1.8rem;
   font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
@@ -304,7 +306,7 @@ section h2 {
   display: inline-block;
 }
 
-section h2::after {
+.contact-section h2::after {
   content: '';
   position: absolute;
   bottom: -8px;
@@ -315,31 +317,144 @@ section h2::after {
   border-radius: 2px;
 }
 
-/* ================= FORM ================= */
+/* ================= LAYOUT 2 COLONNES ================= */
 
-form {
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+/* ================= COLONNE GAUCHE — INFOS ================= */
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.info-card {
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--yellow);
+}
+
+.info-card h3 {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-card p {
+  opacity: 0.85;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.info-card a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.info-card a:hover {
+  color: var(--yellow);
+}
+
+/* Réseaux sociaux */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+}
+
+/* ================= COLONNE DROITE — FORMULAIRE ================= */
+
+.contact-form-col {
   display: flex;
   flex-direction: column;
 }
 
-label {
-  margin-bottom: 5px;
-}
-
-input, textarea {
-  padding: 10px;
+.form-group {
   margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  transition: border-color 0.3s;
 }
 
-input:focus, textarea:focus {
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-size: 1.05rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1);
 }
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Feedback message */
+.form-feedback {
+  margin-top: 20px;
+  padding: 14px 20px;
+  background: #4caf50;
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ================= FOOTER ================= */
 
 footer {
   text-align: center;
@@ -350,13 +465,23 @@ footer {
 
 /* ================= RESPONSIVE ================= */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
   body {
     padding: 0 5%;
   }
-
-  section {
+  
+  .contact-section {
     padding: 30px;
+  }
+  
+  .btn-submit {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -392,18 +517,37 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Animation section
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  });
-
-  sections.forEach(section => {
+  const section = document.querySelector('.contact-section');
+  if (section) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
     observer.observe(section);
-  });
+  }
+
+  // Gestion du formulaire
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const existingMsg = document.querySelector('.form-feedback');
+      if (existingMsg) existingMsg.remove();
+      
+      const feedback = document.createElement('div');
+      feedback.className = 'form-feedback';
+      feedback.textContent = '✅ Message envoyé avec succès ! (démo)';
+      form.appendChild(feedback);
+      
+      form.reset();
+      
+      setTimeout(() => feedback.remove(), 4000);
+    });
+  }
 
 });
 </script>
@@ -417,13 +561,13 @@ document.addEventListener("DOMContentLoaded", function() {
 <header>
   <h1>Contact</h1>
 
- <div class="header-controls">
-  <label class="theme-switch" aria-label="Changer de thème">
-    <input type="checkbox" id="themeToggle">
-    <span class="slider"></span>
-  </label>
-  <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
-</div>
+  <div class="header-controls">
+    <label class="theme-switch" aria-label="Changer de thème">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+    <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
+  </div>
 
   <nav id="nav" hidden>
     <ul>
@@ -436,107 +580,78 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <main>
 
-<nav class="breadcrumb" aria-label="Fil d’Ariane">
-<ol>
-<li><a href="Profile.html">Accueil</a></li>
-<li aria-current="page">Contact</li>
-<li><a href="Projets.html">Projet</a></li>
-</ol>
-</nav>
+  <section class="contact-section">
+    <h2>Me contacter</h2>
+    <p style="margin-bottom: 20px; opacity: 0.8; font-size: 1.2rem;">
+      Une question, un projet, une collaboration ? Écris-moi et je te répondrai dès que possible.
+    </p>
 
-<section>
-<h2>Me contacter</h2>
-<p class="contact-intro">
-  Des questions? Des idées? Contactez moi pour que l'on puisse en discuter, je te répondrai dès que possible.
-</p>
-  
-<form action="#" method="post">
-<label for="nom">Nom</label>
-<input id="nom" name="nom" required>
+    <div class="contact-grid">
 
-<label for="email">Email</label>
-<input id="email" name="email" type="email" required>
+      <!-- COLONNE GAUCHE — INFOS -->
+      <div class="contact-info-col">
 
-<label for="message">Message</label>
-<textarea id="message" name="message" rows="5" required></textarea>
+        <!-- Email -->
+        <div class="info-card">
+          <h3>📧 Email</h3>
+          <p><a href="mailto:laurentlohim54@gmail.com">laurentlohim54@gmail.com</a></p>
+        </div>
 
-<button class="btn" type="submit">Envoyer</button>
-</form>
+        <!-- Téléphone -->
+        <div class="info-card">
+          <h3>📱 Téléphone</h3>
+          <p>+33 6 00 00 00 00</p>
+        </div>
 
-</section>
+        <!-- Localisation -->
+        <div class="info-card">
+          <h3>📍 Localisation</h3>
+          <p>Île-de-France, France</p>
+        </div>
+
+        <!-- Réseaux -->
+        <div class="info-card">
+          <h3>🌐 Réseaux</h3>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="GitHub" title="GitHub">💻</a>
+            <a href="#" class="social-link" aria-label="LinkedIn" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" aria-label="Instagram" title="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="Twitter" title="Twitter">🐦</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COLONNE DROITE — FORMULAIRE -->
+      <div class="contact-form-col">
+        <form action="#" method="post">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" placeholder="Ton nom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Ton adresse email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Parle-moi de ton projet..." required></textarea>
+          </div>
+
+          <button class="btn-submit" type="submit">Envoyer le message ✉️</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
 
 </main>
 
 <footer>
-  <div class="contact-info">
-  <p>Email : <strong>laurentlohim54@gmail.com</strong></p>
-</div>
-<small>© <span id="annee"></span> Lohim LAURENT</small>
+  <small>© <span id="annee"></span> Lohim LAURENT — BUT MMI</small>
 </footer>
-
-<script>
-
-/* Année */
-document.getElementById('annee').textContent = new Date().getFullYear();
-
-/* Burger */
-const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
-
-burger.addEventListener('click', () => {
-  const isOpen = nav.hasAttribute('hidden');
-  nav.toggleAttribute('hidden');
-  burger.setAttribute('aria-expanded', isOpen);
-});
-
-/* Toggle thème */
-document.getElementById('themeToggle')
-  .addEventListener('change', e =>
-    document.documentElement.classList.toggle('theme-dark', e.target.checked)
-);
-
-/* Animation apparition */
-const section = document.querySelector("section");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-}, { threshold: 0.2 });
-
-observer.observe(section);
-
-  // Gestion du formulaire avec feedback visuel
-const form = document.querySelector('form');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Empêche l'envoi réel pour l'instant
-    
-    // Affiche un message de confirmation
-    const existingMsg = document.querySelector('.form-feedback');
-    if (existingMsg) existingMsg.remove();
-    
-    const feedback = document.createElement('div');
-    feedback.className = 'form-feedback';
-    feedback.textContent = '✅ Message envoyé ! (démo)';
-    feedback.style.marginTop = '20px';
-    feedback.style.padding = '12px';
-    feedback.style.background = '#4caf50';
-    feedback.style.color = 'white';
-    feedback.style.borderRadius = '10px';
-    feedback.style.textAlign = 'center';
-    form.appendChild(feedback);
-    
-    // Optionnel : réinitialiser le formulaire
-    form.reset();
-    
-    // Faire disparaître le message après 3 secondes
-    setTimeout(() => feedback.remove(), 3000);
-  });
-}
-</script>
 
 </body>
 </html>

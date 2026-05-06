@@ -204,12 +204,20 @@ nav a.actif {
 
 /* Scrollbar discrète */
 .horizontal-scroll::-webkit-scrollbar {
-  height: 6px;
+  height: 10px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 184, 0, 0.14);
 }
 
 .horizontal-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.3);
-  border-radius: 10px;
+  background: linear-gradient(180deg, #ffb600, #ff6d00);
+  border-radius: 999px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ffd034, #ff8a1a);
 }
   
 /* Conteneur des contrôles header */
@@ -350,13 +358,13 @@ document.addEventListener("DOMContentLoaded", function() {
   <h2>Personnal work</h2>
 
   <div class="horizontal-scroll">
-    <img src="images/PersonnalImages/cafe.png" alt="">
-    <img src="images/PersonnalImages/Do%20not..png" alt="">
-    <img src="images/PersonnalImages/It's%20you....png" alt="">
-    <img src="images/PersonnalImages/Remember%20(%20better%20quality).png" alt="">
-    <img src="images/PersonnalImages/Perspective%202.png" alt="">
-    <img src="images/PersonnalImages/wasgood%20(2).png" alt="">
-    <img src="images/PersonnalImages/wasgood%20(alt).png" alt="">
+    <img src="cafe.png" alt="Café">
+    <img src="Do%20not..png" alt="Do not">
+    <img src="It%27s%20you....png" alt="It's you">
+    <img src="Remember%20(%20better%20quality).png" alt="Remember">
+    <img src="Perspective%202.png" alt="Perspective">
+    <img src="wasgood%20(2).png" alt="Wasgood 2">
+    <img src="wasgood%20(alt).png" alt="Wasgood alt">
   </div>
 </section>
 
@@ -364,10 +372,10 @@ document.addEventListener("DOMContentLoaded", function() {
   <h2>Projet Web</h2>
 
   <div class="horizontal-scroll">
-    <img src="images/PersonnalImages/Plan.png" alt="">
-    <img src="images/PersonnalImages/ohwow.png" alt="">
-    <img src="projet3.jpg" alt="">
-    <img src="projet4.jpg" alt="">
+    <img src="Plan.png" alt="Plan">
+    <img src="ohwow.png" alt="Oh wow">
+    <img src="Sunset.png" alt="Sunset">
+    <img src="Target.png" alt="Target">
   </div>
 </section>
 

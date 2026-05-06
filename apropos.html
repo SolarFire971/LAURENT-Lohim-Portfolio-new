@@ -3,17 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>À propos</title>
+<title>À propos — Lohim LAURENT</title>
 
 <style>
 
-/* ===== VARIABLES ===== */
+/* ================= VARIABLES ================= */
 
 :root {
   --bg: #0f0f13;
   --text: white;
   --card-bg: rgba(255,255,255,0.05);
   --border: rgba(255,255,255,0.1);
+  --red: #ff0000;
+  --yellow: #ffcc00;
 }
 
 .theme-dark {
@@ -23,19 +25,31 @@
   --border: rgba(0,0,0,0.1);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+/* ================= SCROLLBAR PERSONNALISÉE ================= */
+
+::-webkit-scrollbar {
+  width: 12px;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  padding: 0 10%;
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
 }
-    
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--red), var(--yellow));
+  border-radius: 10px;
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff3333, #ffdd44);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) #1a1a1a;
+}
+
 /* ================= RESET ================= */
 
 * {
@@ -50,6 +64,8 @@ body {
   color: var(--text);
   padding: 0 10%;
   overflow-x: hidden;
+  font-size: 1.15rem;
+  line-height: 1.7;
 }
 
 /* ================= BACKGROUND ================= */
@@ -84,7 +100,7 @@ body {
   100% { transform: translate(-100px,100px) scale(1); }
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 
 header {
   display: flex;
@@ -94,82 +110,86 @@ header {
   position: relative;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+h1 {
+  font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  position: relative;
 }
 
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+  border-radius: 2px;
+}
+
+.btn {
+  background: white;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation */
 #nav {
   position: absolute;
-  top: 80px;
+  top: 100%;
   right: 0;
+  width: 250px;
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border);
-  padding: 20px;
   border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+  z-index: 100;
 }
 
 #nav ul {
   list-style: none;
-}
-
-#nav li {
-  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 #nav a {
   color: var(--text);
   text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s;
 }
 
-/* ===== PAGE A PROPOS ===== */
-
-.about-container {
-  display: flex;
-  gap: 80px;
-  margin: 120px 0;
-  align-items: flex-start;
+#nav a:hover {
+  color: var(--yellow);
 }
 
-.about-photo img {
-  width: 320px;
-  border-radius: 25px;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+#nav a.actif {
+  font-weight: bold;
+  color: var(--yellow);
+  border-left: 3px solid var(--yellow);
+  padding-left: 12px;
 }
 
-.about-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.text-box {
-  padding: 40px;
-  border-radius: 25px;
-  backdrop-filter: blur(20px);
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 900px) {
-  .about-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-photo img {
-    width: 240px;
-  }
-}
-  
 /* Conteneur des contrôles header */
 .header-controls {
   display: flex;
@@ -178,6 +198,7 @@ header {
 }
 
 /* ================= TOGGLE THEME ================= */
+
 .theme-switch {
   position: relative;
   display: inline-block;
@@ -192,7 +213,6 @@ header {
   height: 0;
 }
 
-/* Le slider (fond du toggle) */
 .theme-switch .slider {
   position: absolute;
   top: 0;
@@ -205,7 +225,6 @@ header {
   border: 1px solid var(--border);
 }
 
-/* Le rond qui bouge */
 .theme-switch .slider:before {
   position: absolute;
   content: "🌙";
@@ -223,23 +242,166 @@ header {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-/* Quand la case est cochée (mode sombre activé) */
 .theme-switch input:checked + .slider:before {
   transform: translateX(28px);
   content: "☀️";
   background-color: #ffde6e;
 }
 
-/* Fond du toggle quand mode sombre activé */
 .theme-switch input:checked + .slider {
   background-color: rgba(0, 0, 0, 0.3);
   border-color: #ffde6e;
 }
 
+/* ================= PAGE A PROPOS ================= */
+
+.about-section {
+  margin: 80px 0;
+  padding: 50px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1s ease;
+}
+
+.about-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section:hover {
+  border-color: var(--yellow);
+}
+
+.about-container {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.about-photo {
+  flex-shrink: 0;
+}
+
+.about-photo img {
+  width: 320px;
+  border-radius: 25px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.about-photo img:hover {
+  transform: scale(1.02);
+  border-color: var(--yellow);
+}
+
+.about-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.text-box {
+  padding: 35px;
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.text-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--yellow);
+}
+
+.text-box h2 {
+  font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.text-box h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+  border-radius: 2px;
+}
+
+.text-box p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  line-height: 1.8;
+}
+
+/* Liste des qualités */
+.qualites-list {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.qualites-list li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.qualites-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--yellow);
+  font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
 footer {
   text-align: center;
   margin: 80px 0 40px;
   opacity: 0.6;
+  font-size: 1rem;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .about-photo img {
+    width: 240px;
+  }
+
+  body {
+    padding: 0 5%;
+  }
+
+  .about-section {
+    padding: 30px;
+  }
+
+  .text-box {
+    padding: 25px;
+  }
 }
 
 </style>
@@ -247,86 +409,124 @@ footer {
 
 <body>
 
+<div class="blob"></div>
+<div class="blob"></div>
+
 <header>
 
-<h1>À propos</h1>
+  <h1>À propos</h1>
 
-<div class="header-controls">
-  <label class="theme-switch" aria-label="Changer de thème">
-    <input type="checkbox" id="themeToggle">
-    <span class="slider"></span>
-  </label>
-  <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
-</div>
+  <div class="header-controls">
+    <label class="theme-switch" aria-label="Changer de thème">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+    <button id="burger" class="btn" aria-expanded="false" aria-controls="nav">☰</button>
+  </div>
 
-<nav id="nav" hidden>
-  <ul>
-    <li><a href="Profile.html">Accueil</a></li>
-    <li><a href="projets.html">Projets</a></li>
-    <li><a href="Contact.html">Contact</a></li>
-    
-  </ul>
-</nav>
+  <nav id="nav" hidden>
+    <ul>
+      <li><a href="Profile.html">Accueil</a></li>
+      <li><a href="Projets.html">Projets</a></li>
+      <li><a class="actif" href="Contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
 </header>
 
 <main>
 
-<section class="about-container">
+  <section class="about-section">
 
-  <div class="about-photo">
-    <img src="images/PersonnalImages/The%20sun.png" alt="Photo de profil">
-  </div>
+    <div class="about-container">
 
-  <div class="about-content">
+      <div class="about-photo">
+        <img src="images/PersonnalImages/The%20sun.png" alt="Photo de profil">
+      </div>
 
-    <div class="text-box">
-      <h2>Présentation</h2>
-      <p>Passionné par la création numérique depuis mon plus jeune âge, C'est en suivant ce désir de créer que j'ai guidé mon parcours scolaire vers une vois me permettant de pouvoir continuer de pouvoir créer</p>
+      <div class="about-content">
+
+        <div class="text-box">
+          <h2>Présentation</h2>
+          <p>Passionné par la création numérique depuis mon plus jeune âge, c'est en suivant ce désir de créer que j'ai guidé mon parcours scolaire vers une voie me permettant de continuer à donner vie à mes idées. Aujourd'hui étudiant en BUT MMI, je développe mes compétences en design, développement web et création visuelle.</p>
+        </div>
+
+        <div class="text-box">
+          <h2>Compétences</h2>
+          <p>Durant de nombreuses années, j'ai commencé à étudier l'animation 3D avec l'aide de Mine-Imator, un logiciel ayant forgé mes débuts dans ce monde créatif. Puis, par la suite, j'ai commencé à apprendre la programmation à l'aide de certaines bases comme le HTML et le CSS. Deux outils pour la conception du front-end des sites internet. Je maîtrise également Figma pour le design d'interfaces.</p>
+        </div>
+
+        <div class="text-box">
+          <h2>Mes qualités</h2>
+          <ul class="qualites-list">
+            <li>Polyvalent — capable de passer du design au code</li>
+            <li>Apprentissage rapide — j'apprends vite quand je suis passionné</li>
+            <li>Curieux — toujours en veille sur les nouvelles tendances</li>
+            <li>Méthodique — j'aime structurer mes projets proprement</li>
+          </ul>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="text-box">
-      <h2>Compétence</h2>
-      <p>Durant de nombreuses années, j'ai commencé a étudier l'animation 3D avec l'aide de Mine-Imator, un logiciel ayant forgé mes début dans ce monde créatif. Puis, par la suite, j'ai commencé a apprendre la programmation à l'aide de certaines base comme le HTML et le CSS. Deux outil pour la conception du front-end des sites internets.</p>
-    </div>
-
-    <div class="text-box">
-      <h2>Mes qualités</h2>
-      <p>Je suis quelqu'un qui se décrirait comme pouvant être polyvalent, capable d'apprendre les choses vites une fois que je désire vraiment les connaîtres.</p>
-    </div>
-
-  </div>
-
-</section>
+  </section>
 
 </main>
 
 <footer>
-  <small>© <span id="annee"></span> LAURENT Lohim</small>
+  <small>© <span id="annee"></span> Lohim LAURENT — BUT MMI</small>
 </footer>
 
 <script>
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  // Année
-  document.getElementById('annee').textContent = new Date().getFullYear();
+  // Année automatique
+  const annee = document.getElementById('annee');
+  if (annee) {
+    annee.textContent = new Date().getFullYear();
+  }
 
-  // Thème sombre
-  const toggle = document.getElementById("themeToggle");
-  toggle.addEventListener("change", function() {
-    document.documentElement.classList.toggle("theme-dark", this.checked);
-  });
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('change', function(e) {
+      document.documentElement.classList.toggle('theme-dark', e.target.checked);
+    });
+  }
 
-  // Burger
-  const burger = document.getElementById("burger");
-  const nav = document.getElementById("nav");
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
 
-  burger.addEventListener("click", function() {
-    const expanded = this.getAttribute("aria-expanded") === "true";
-    this.setAttribute("aria-expanded", !expanded);
-    nav.hidden = expanded;
-  });
+  if (burger && nav) {
+    burger.addEventListener('click', function() {
+      const isHidden = nav.hasAttribute('hidden');
+      
+      if (isHidden) {
+        nav.removeAttribute('hidden');
+        burger.setAttribute('aria-expanded', 'true');
+      } else {
+        nav.setAttribute('hidden', '');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Animation section au scroll
+  const section = document.querySelector('.about-section');
+  if (section) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(section);
+  }
 
 });
 

@@ -11,9 +11,12 @@
 
 :root {
   --bg: #0f0f13;
-  --text: white;
+  --text: #ffffff;
   --card-bg: rgba(255,255,255,0.05);
   --border: rgba(255,255,255,0.1);
+  --red: #ff0000;
+  --yellow: #ffcc00;
+  --accent: #ff4e50;
 }
 
 .theme-dark {
@@ -23,13 +26,39 @@
   --border: rgba(0,0,0,0.1);
 }
 
+/* ================= SCROLLBAR PERSONNALISÉE ================= */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--red), var(--yellow));
+  border-radius: 10px;
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff3333, #ffdd44);
+}
+
+/* Pour Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) #1a1a1a;
+}
+
 /* ================= RESET ================= */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
@@ -37,6 +66,8 @@ body {
   color: var(--text);
   padding: 0 10%;
   overflow-x: hidden;
+  font-size: 1.15rem;
+  line-height: 1.7;
 }
 
 /* ================= BACKGROUND ================= */
@@ -82,12 +113,23 @@ header {
 }
 
 header h1 {
-  font-size: 1.8rem;
+  font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+header h1 .nom {
+  color: var(--red);
+}
+
+header h1 .prenom {
+  color: var(--yellow);
 }
 
 header p {
   opacity: 0.7;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .btn {
@@ -99,6 +141,7 @@ header p {
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .btn:hover {
@@ -135,6 +178,7 @@ nav a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
+  font-size: 1.05rem;
 }
 
 @keyframes fadeIn {
@@ -152,7 +196,7 @@ nav a {
 
 section {
   margin: 100px 0;
-  padding: 40px;
+  padding: 50px;
   border-radius: 20px;
   backdrop-filter: blur(20px);
   background: var(--card-bg);
@@ -169,18 +213,38 @@ section.show {
 
 h2 {
   margin-bottom: 30px;
+  font-size: 1.8rem;
+  font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+  border-radius: 2px;
+}
+
+section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
 /* ================= PROJETS ================= */
 
 .grille-projets {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
 .carte {
-  padding: 20px;
+  padding: 25px;
   border-radius: 15px;
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -189,6 +253,7 @@ h2 {
 
 .carte:hover {
   transform: translateY(-10px);
+  border-color: var(--yellow);
 }
 
 .carte img {
@@ -196,56 +261,111 @@ h2 {
   border-radius: 10px;
   margin-bottom: 15px;
 }
+
+.carte h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
   
 .coolbtn {
   display: inline-block;
-  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  background: linear-gradient(135deg, var(--red), #ff6a00);
   color: white;
   font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 14px 32px;
   border-radius: 40px;
   text-decoration: none;
-  text-align: center
+  text-align: center;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 78, 80, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  letter-spacing: 0.5px;
 }
 
 .coolbtn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 78, 80, 0.4);
-  background: linear-gradient(135deg, #ff6a6c, #ffde6e);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff1a1a, #ff8c00);
 }
 
-/* Grille des compétences */
+/* ================= COMPÉTENCES ================= */
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
 }
 
-.skill-card {
-  padding: 20px;
+.skill-category {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 15px;
+  border-radius: 18px;
+  padding: 30px;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: #ff4e50;
+.skill-category:hover {
+  transform: translateY(-8px);
+  border-color: var(--yellow);
+}
+
+.skill-category h3 {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-item {
+  margin-bottom: 20px;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.skill-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+  transition: width 1.5s ease;
+}
+
+.skill-bar-fill.html-css { width: 85%; }
+.skill-bar-fill.figma { width: 80%; }
+.skill-bar-fill.ux { width: 75%; }
+.skill-bar-fill.crea { width: 90%; }
+.skill-bar-fill.photo { width: 70%; }
+.skill-bar-fill.motion { width: 45%; }
+
+.profil-photo {
+  max-width: 240px;
 }
   
-  .profil-photo {
-    max-width: 240px;
-  }
-  
-  /* Conteneur des contrôles header */
+/* Conteneur des contrôles header */
 .header-controls {
   display: flex;
   align-items: center;
@@ -310,16 +430,18 @@ h2 {
   background-color: rgba(0, 0, 0, 0.3);
   border-color: #ffde6e;
 }
+
 /* ================= FORM ================= */
 
 input, textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
   border-radius: 10px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text);
+  font-size: 1rem;
 }
   
 @media (max-width: 900px) {
@@ -332,6 +454,10 @@ input, textarea {
   .profil-photo img {
     width: 240px;
   }
+
+  body {
+    padding: 0 5%;
+  }
 }
 
 /* ================= FOOTER ================= */
@@ -340,6 +466,7 @@ footer {
   text-align: center;
   margin: 80px 0 40px;
   opacity: 0.6;
+  font-size: 1rem;
 }
 
 </style>
@@ -352,7 +479,7 @@ footer {
 
 <header>
   <div>
-    <h1>Lohim LAURENT</h1>
+    <h1><span class="nom">LAURENT</span> <span class="prenom">Lohim</span></h1>
     <p>Étudiant en BUT MMI</p>
   </div>
 
@@ -383,13 +510,115 @@ footer {
 
 <section id="competences">
 <h2>Compétences</h2>
-<ul>
+
 <div class="skills-grid">
-  <div class="skill-card">🎨 UI Design — Maquettes Figma</div>
-  <div class="skill-card">💻 HTML/CSS — Sites responsives</div>
-  <div class="skill-card">📱 UX fondamentaux — Parcours utilisateur</div>
+  
+  <!-- Catégorie Design -->
+  <div class="skill-category">
+    <h3>🎨 Design & UI</h3>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Maquettes Figma</span>
+        <span>80%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill figma"></div>
+      </div>
+    </div>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Design d'interfaces</span>
+        <span>85%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill html-css"></div>
+      </div>
+    </div>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>UX fondamentaux</span>
+        <span>75%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill ux"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Catégorie Développement -->
+  <div class="skill-category">
+    <h3>💻 Développement</h3>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>HTML / CSS</span>
+        <span>85%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill html-css"></div>
+      </div>
+    </div>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Sites responsives</span>
+        <span>80%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill figma"></div>
+      </div>
+    </div>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Animation CSS</span>
+        <span>45%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill motion"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Catégorie Créativité -->
+  <div class="skill-category">
+    <h3>✨ Créativité</h3>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Direction artistique</span>
+        <span>90%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill crea"></div>
+      </div>
+    </div>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Photographie</span>
+        <span>70%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill photo"></div>
+      </div>
+    </div>
+    
+    <div class="skill-item">
+      <div class="skill-header">
+        <span>Typographie & mise en page</span>
+        <span>80%</span>
+      </div>
+      <div class="skill-bar-bg">
+        <div class="skill-bar-fill figma"></div>
+      </div>
+    </div>
+  </div>
+
 </div>
-</ul>
 </section>
 
 <section id="projets-apercu">
@@ -397,13 +626,13 @@ footer {
   <div class="grille-projets">
     <div class="carte">
       <img src="images/PersonnalImages/cafe.png" alt="Projet site café">
-      <h3>Création personnel</h3>
-      <p>.</p>
+      <h3>Création personnelle</h3>
+      <p>Design libre, exploration graphique.</p>
     </div>
     <div class="carte">
       <img src="images/PersonnalImages/Plan.png" alt="Projet maquette">
       <h3>Plan de JPO</h3>
-      <p>Récapitulatif des plan de la JPO.</p>
+      <p>Récapitulatif des plans de la JPO.</p>
     </div>
     <div class="carte">
       <img src="images/PersonnalImages/ohwow.png" alt="Projet créatif">

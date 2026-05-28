@@ -282,7 +282,7 @@ section p {
 }
 
 .profile-photo-frame {
-  background: rgba(255,255,255,0.05);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 28px;
   padding: 18px;
@@ -293,6 +293,7 @@ section p {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center 20%;
   border-radius: 22px;
   display: block;
 }
@@ -366,7 +367,7 @@ section p {
 }
 
 .about-panel {
-  background: rgba(255,255,255,0.05);
+  background: var(--card-bg);
   border-radius: 20px;
   border: 1px solid var(--border);
   padding: 22px;
@@ -378,6 +379,7 @@ section p {
 .about-panel h3 {
   font-size: 1.15rem;
   margin-bottom: 4px;
+  color: var(--yellow);
 }
 
 .profile-list {
@@ -391,7 +393,7 @@ section p {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  color: rgba(255,255,255,0.88);
+  color: var(--text);
 }
 
 .profile-list li::before {
@@ -418,10 +420,10 @@ section p {
   margin-top: 12px;
   padding: 14px 16px;
   border-radius: 14px;
-  background: rgba(255,255,255,0.04);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   font-size: 0.95rem;
-  color: rgba(255,255,255,0.82);
+  color: var(--text);
 }
 
 /* ================= PROJETS ================= */

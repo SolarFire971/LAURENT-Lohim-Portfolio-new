@@ -235,6 +235,192 @@ section p {
   margin-bottom: 20px;
 }
 
+.profile-hero-panel {
+  display: grid;
+  gap: 24px;
+}
+
+.profile-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.profile-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-kicker {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,204,0,0.15);
+  border: 1px solid rgba(255,204,0,0.35);
+  color: var(--yellow);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.profile-hero-copy h2 {
+  margin-bottom: 0;
+  max-width: 760px;
+}
+
+.profile-hero-copy .hero-text {
+  margin-bottom: 0;
+  max-width: 720px;
+}
+
+.profile-photo-frame {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.profile-photo-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 22px;
+  display: block;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.profile-stat-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-stat-card .stat-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.profile-stat-card .stat-label {
+  font-size: 0.84rem;
+  opacity: 0.76;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.secondary-link {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,204,0,0.55);
+  font-weight: 700;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.profile-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.about-panel {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-panel h3 {
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+.profile-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: rgba(255,255,255,0.88);
+}
+
+.profile-list li::before {
+  content: '✦';
+  color: var(--yellow);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 6px 8px 0 0;
+}
+
+.section-note {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.82);
+}
+
 /* ================= PROJETS ================= */
 
 .grille-projets {
@@ -443,12 +629,15 @@ input, textarea {
   color: var(--text);
   font-size: 1rem;
 }
-  
+
 @media (max-width: 900px) {
-  .about-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .profile-hero-grid,
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-stats {
+    grid-template-columns: 1fr;
   }
 
   .profil-photo img {
@@ -506,21 +695,71 @@ footer {
 
 <main>
 
+<section id="profile-hero" class="profile-hero-panel">
+  <div class="profile-hero-grid">
+    <div class="profile-hero-copy">
+      <span class="profile-kicker">Signature numérique · Laurent Lohim</span>
+      <h2>Je suis un créateur numérique qui donne une personnalité, une atmosphère et une mémoire aux pages web.</h2>
+      <p class="hero-text">Avant tout, je suis un regard créatif. Je mêle technique, esthétique, sens du détail et une petite dose de poésie pour faire en sorte qu’un site ne soit pas seulement fonctionnel, mais vivant, mémorable et singulier.</p>
+      <div class="profile-actions">
+        <a href="Contact.html" class="coolbtn">Discuter d'un projet</a>
+        <a href="Projets.html" class="secondary-link">Explorer mes créations</a>
+      </div>
+    </div>
+
+    <div class="profile-photo-frame">
+      <img src="Profil Picture.png" alt="Portrait de Laurent Lohim">
+    </div>
+  </div>
+
+  <div class="profile-stats">
+    <div class="profile-stat-card">
+      <span class="stat-value">Atelier</span>
+      <span class="stat-label">Je construis le web comme un espace d’expression</span>
+    </div>
+    <div class="profile-stat-card">
+      <span class="stat-value">Rythme</span>
+      <span class="stat-label">Je cherche la cohérence, l’équilibre et la sensation</span>
+    </div>
+    <div class="profile-stat-card">
+      <span class="stat-value">Vision</span>
+      <span class="stat-label">Je donne une identité forte à chaque interface</span>
+    </div>
+  </div>
+</section>
+
 <section id="apropos">
-<h2>À propos</h2>
-<p>Passionné par la création numérique depuis mon plus jeune âge, j'ai naturellement orienté mon parcours vers le BUT MMI pour apprendre à concevoir des interfaces web fonctionnelles et esthétiques. Aujourd'hui, je connais les bases du HTML/CSS, du design d'interface et de l'animation.</p>
-<a href="apropos.html" class="coolbtn">Voir plus →</a>
+  <h2>Mon identité créative</h2>
+  <div class="about-layout">
+    <div>
+      <p>Depuis mon plus jeune âge, je suis attiré par la création numérique. Le BUT MMI m’a offert une base technique solide, mais c’est surtout la fascination du rendu, du rythme et de l’atmosphère qui m’anime dans chaque projet.</p>
+      <p>Je ne cherche pas seulement à faire un site “propre” : je cherche à lui donner une personnalité, une direction artistique, une sensation. Mon travail consiste à transformer l’écran en lieu d’expression, avec un équilibre entre structure, émotion et clarté.</p>
+      <div class="profile-badges">
+        <span class="profile-badge">Direction artistique</span>
+        <span class="profile-badge">Web créatif</span>
+        <span class="profile-badge">Narration visuelle</span>
+        <span class="profile-badge">Expérience utilisateur</span>
+      </div>
+    </div>
+
+    <aside class="about-panel">
+      <h3>Ce que j’apporte</h3>
+      <ul class="profile-list">
+        <li>Je donne du caractère à l’interface, pas seulement de la fonction.</li>
+        <li>Je travaille le contraste, la lisibilité, l’émotion et la mémoire visuelle.</li>
+        <li>Je préfère des pages qui se sentent vivantes, singulières et durables.</li>
+      </ul>
+      <div class="section-note">Le web devient plus puissant lorsqu’il est à la fois utile, élégant et chargé d’identité.</div>
+    </aside>
+  </div>
 </section>
 
 <section id="competences">
-<h2>Compétences</h2>
-
-<section id="competences">
-  <h2>Compétences</h2>
+  <h2>Compétences & outils</h2>
+  <p>Un mélange de savoir-faire techniques, visuels et créatifs qui me permet d’aborder les projets sous plusieurs angles.</p>
 
   <div class="skills-grid">
 
-    <!-- DÉVELOPPEMENT -->
     <div class="skill-category">
       <h3>Développement</h3>
       <div class="skill-tags">
@@ -533,7 +772,6 @@ footer {
       </div>
     </div>
 
-    <!-- DESIGN -->
     <div class="skill-category">
       <h3>Design</h3>
       <div class="skill-tags">
@@ -544,7 +782,6 @@ footer {
       </div>
     </div>
 
-    <!-- IA -->
     <div class="skill-category">
       <h3>Intelligence Artificielle</h3>
       <div class="skill-tags">
@@ -555,9 +792,8 @@ footer {
       </div>
     </div>
 
-    <!-- ANIMATION -->
     <div class="skill-category">
-      <h3>Animation</h3>
+      <h3>Animation & création visuelle</h3>
       <div class="skill-tags">
         <span class="skill-tag">Mine-Imator</span>
         <span class="skill-tag">ModelBench</span>
@@ -571,21 +807,22 @@ footer {
 
 <section id="projets-apercu">
   <h2>Mes derniers projets</h2>
+  <p>Je préfère travailler avec des projets qui mêlent esthétique, concept et structure. Chaque réalisation est pour moi une manière de raconter une ambiance, une intention ou un univers.</p>
   <div class="grille-projets">
     <div class="carte">
       <img src="cafe.png" alt="Projet site café">
       <h3>Création personnelle</h3>
-      <p>Design libre, exploration graphique.</p>
+      <p>Design libre, exploration graphique et construction d’une ambiance visuelle.</p>
     </div>
     <div class="carte">
       <img src="Plan.png" alt="Projet maquette">
       <h3>Plan de JPO</h3>
-      <p>Récapitulatif des plans de la JPO.</p>
+      <p>Organisation, clarté d’information et mise en page orientée communication.</p>
     </div>
     <div class="carte">
       <img src="ohwow.png" alt="Projet créatif">
       <h3>Projet créatif</h3>
-      <p>Projet de groupe sur le thème de site de voyage.</p>
+      <p>Projet de groupe sur le thème du voyage avec un rendu graphique pensé.</p>
     </div>
   </div>
   <div style="text-align: center; margin-top: 30px;">

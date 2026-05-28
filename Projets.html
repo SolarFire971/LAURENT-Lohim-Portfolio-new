@@ -386,6 +386,41 @@ header {
   font-weight: 700;
 }
 
+/* ================= FILTRES ================= */
+
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 10px 0 28px;
+}
+
+.filtre-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filtre-btn:hover {
+  border-color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.filtre-btn.actif {
+  background: linear-gradient(135deg, var(--red), #ff6a00);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 8px 22px rgba(255, 0, 0, 0.28);
+}
+
 /* ================= GRILLE PROJETS ================= */
 
 .projets-grid {
@@ -709,6 +744,13 @@ footer {
     </aside>
   </section>
 
+  <!-- ========== FILTRES ========== -->
+  <div class="filtres">
+    <button class="filtre-btn actif" data-filtre="tous">Tous</button>
+    <button class="filtre-btn" data-filtre="scolaire">🎓 Scolaire</button>
+    <button class="filtre-btn" data-filtre="personnel">✨ Personnel</button>
+  </div>
+
   <!-- ========== GRILLE PROJETS ========== -->
   <div class="projets-grid" id="projetsContainer">
 
@@ -955,6 +997,28 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') fermerLightbox();
+  });
+
+  // ========== FILTRES ==========
+  const filtreBtns = document.querySelectorAll('.filtre-btn');
+  const projetCards = document.querySelectorAll('.projet-card');
+
+  filtreBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      filtreBtns.forEach(b => b.classList.remove('actif'));
+      this.classList.add('actif');
+
+      const filtre = this.getAttribute('data-filtre');
+
+      projetCards.forEach(card => {
+        if (filtre === 'tous') {
+          card.style.display = 'block';
+        } else {
+          const categories = card.getAttribute('data-categories');
+          card.style.display = categories && categories.includes(filtre) ? 'block' : 'none';
+        }
+      });
+    });
   });
 
 });

@@ -305,91 +305,137 @@ header {
   border-color: #ffde6e;
 }
 
-/* ================= FILTRES ================= */
+/* ================= INTRO PROJETS ================= */
 
-.filtres {
+.projects-intro {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 20px;
+  align-items: start;
+  margin: 20px 0 30px;
+}
+
+.projects-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.projects-kicker {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,204,0,0.15);
+  border: 1px solid rgba(255,204,0,0.35);
+  color: var(--yellow);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.projects-copy h2 {
+  font-family: 'Arial Black', 'Arial Bold', Arial, sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  max-width: 900px;
+}
+
+.projects-copy p {
+  max-width: 700px;
+  color: rgba(255,255,255,0.82);
+}
+
+.projects-spotlight {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+.projects-spotlight h3 {
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.projects-spotlight p {
+  color: rgba(255,255,255,0.78);
+  font-size: 0.95rem;
+}
+
+.projects-highlights {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin: 40px 0;
-  justify-content: center;
+  gap: 10px;
 }
 
-.filtre-btn {
-  padding: 10px 22px;
-  border-radius: 30px;
+.projects-highlight {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 12px;
   border: 1px solid var(--border);
-  background: var(--card-bg);
+  background: rgba(255,255,255,0.06);
   color: var(--text);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.filtre-btn:hover {
-  border-color: var(--yellow);
-  transform: translateY(-2px);
-}
-
-.filtre-btn.actif {
-  background: linear-gradient(135deg, var(--red), #ff6a00);
-  color: white;
-  border-color: transparent;
+  font-size: 0.72rem;
   font-weight: 700;
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
 
 /* ================= GRILLE PROJETS ================= */
 
 .projets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-  margin: 40px 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 30px 0 40px;
 }
 
 .projet-card {
   position: relative;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   border: 1px solid var(--border);
   background: var(--card-bg);
   transition: all 0.4s ease;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.24);
 }
 
 .projet-card:hover {
   transform: translateY(-8px);
-  border-color: var(--yellow);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  border-color: rgba(255,204,0,0.65);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.45);
 }
 
 .projet-card img {
   width: 100%;
-  height: 220px;
+  height: 260px;
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
 }
 
 .projet-card:hover img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .projet-card-body {
-  padding: 20px;
+  padding: 18px 18px 20px;
 }
 
 .projet-card-body h3 {
   font-family: 'Arial Black', Arial, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 8px;
 }
 
 .projet-card-body p {
-  opacity: 0.7;
+  opacity: 0.72;
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -413,9 +459,6 @@ header {
 
 .label-scolaire { background: #4a90d9; color: white; }
 .label-personnel { background: #7b4fbf; color: white; }
-.label-animation { background: #e8852d; color: white; }
-.label-image { background: #2d9e5a; color: white; }
-.label-video { background: #d94040; color: white; }
 
 /* Overlay au hover */
 .projet-card .projet-overlay {
@@ -424,10 +467,11 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.72));
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 16px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -437,19 +481,14 @@ header {
 }
 
 .projet-overlay span {
-  background: white;
+  background: rgba(255,255,255,0.92);
   color: black;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-/* ================= LIGHTBOX ================= */
-
-.lightbox {
-  position: fixed;
-  top: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   left: 0;
   width: 100%;
   height: 100%;
@@ -560,6 +599,10 @@ footer {
     padding: 0 5%;
   }
 
+  .projects-intro {
+    grid-template-columns: 1fr;
+  }
+
   .lightbox-content {
     flex-direction: column;
     padding: 25px;
@@ -648,21 +691,29 @@ footer {
 
 <main>
 
-  <!-- ========== FILTRES ========== -->
-  <div class="filtres">
-    <button class="filtre-btn actif" data-filtre="tous">Tous</button>
-    <button class="filtre-btn" data-filtre="scolaire">🎓 Scolaire</button>
-    <button class="filtre-btn" data-filtre="personnel">✨ Personnel</button>
-    <button class="filtre-btn" data-filtre="animation">🎬 Animation</button>
-    <button class="filtre-btn" data-filtre="image">🖼️ Image</button>
-    <button class="filtre-btn" data-filtre="video">🎥 Vidéo</button>
-  </div>
+  <section class="projects-intro">
+    <div class="projects-copy">
+      <span class="projects-kicker">Galerie personnelle</span>
+      <h2>Mes projets sont des atmosphères, des explorations et des créations qui gardent une trace de mon univers.</h2>
+      <p>J’ai choisi de mettre en avant des projets qui racontent à la fois mon regard, ma sensibilité graphique et ma manière de construire une interface ou une image.</p>
+    </div>
+
+    <aside class="projects-spotlight">
+      <h3>Direction actuelle</h3>
+      <p>Cette page met l’accent sur les créations visibles, lisibles et mémorables. Les projets les plus personnels et les travaux scolaires sont présentés dans une galerie plus cohérente et plus narrative.</p>
+      <div class="projects-highlights">
+        <span class="projects-highlight">✨ Personnels</span>
+        <span class="projects-highlight">🎓 Scolaires</span>
+        <span class="projects-highlight">🧠 Créations artistiques</span>
+      </div>
+    </aside>
+  </section>
 
   <!-- ========== GRILLE PROJETS ========== -->
   <div class="projets-grid" id="projetsContainer">
 
-    <!-- PROJET 1 — Scolaire + Image -->
-    <div class="projet-card" data-categories="scolaire image" data-id="1">
+    <!-- PROJET 1 -->
+    <div class="projet-card" data-categories="scolaire" data-id="1">
       <img src="Plan.png" alt="Plan JPO">
       <div class="projet-overlay"><span>Voir le projet</span></div>
       <div class="projet-card-body">
@@ -670,13 +721,12 @@ footer {
         <p>Plan interactif pour les Journées Portes Ouvertes.</p>
         <div class="projet-labels">
           <span class="label label-scolaire">Scolaire</span>
-          <span class="label label-image">Image</span>
         </div>
       </div>
     </div>
 
-    <!-- PROJET 2 — Personnel + Image -->
-    <div class="projet-card" data-categories="personnel image" data-id="2">
+    <!-- PROJET 2 -->
+    <div class="projet-card" data-categories="personnel" data-id="2">
       <img src="cafe.png" alt="Café">
       <div class="projet-overlay"><span>Voir le projet</span></div>
       <div class="projet-card-body">
@@ -684,7 +734,6 @@ footer {
         <p>Design libre, exploration graphique et ambiance.</p>
         <div class="projet-labels">
           <span class="label label-personnel">Personnel</span>
-          <span class="label label-image">Image</span>
         </div>
       </div>
     </div>
@@ -702,8 +751,8 @@ footer {
       </div>
     </div>
 
-    <!-- PROJET 4 — Scolaire + Vidéo -->
-    <div class="projet-card" data-categories="personnel image" data-id="4">
+    <!-- PROJET 4 -->
+    <div class="projet-card" data-categories="personnel" data-id="4">
       <img src="The autumn sky.png" alt="Image rendue">
       <div class="projet-overlay"><span>Voir le projet</span></div>
       <div class="projet-card-body">
@@ -711,14 +760,13 @@ footer {
         <p>Entrainement à la création de lumière ambiante.</p>
         <div class="projet-labels">
           <span class="label label-personnel">Personnel</span>
-          <span class="label label-image">Image</span>
         </div>
       </div>
     </div>
 
     <!-- Ajoute tes autres projets ici -->
     <!-- Copie ce bloc et personnalise-le -->
-<div class="projet-card" data-categories="personnel image" data-id="5">
+<div class="projet-card" data-categories="personnel" data-id="5">
   <img src="its-you.png" alt="Description">
   <div class="projet-overlay"><span>Voir le projet</span></div>
   <div class="projet-card-body">
@@ -726,12 +774,11 @@ footer {
     <p>Rendue image ayant pour but de tester les nouveaux modèles créer pour mes animations</p>
     <div class="projet-labels">
       <span class="label label-personnel">Personnel</span>
-      <span class="label label-image">Image</span>
     </div>
   </div>
 </div>
 
-<div class="projet-card" data-categories="personnel image" data-id="6">
+<div class="projet-card" data-categories="personnel" data-id="6">
   <img src="Men in black LL (1).png" alt="Description">
   <div class="projet-overlay"><span>Voir le projet</span></div>
   <div class="projet-card-body">
@@ -739,12 +786,11 @@ footer {
     <p>Entrainement à Photoshop.</p>
     <div class="projet-labels">
       <span class="label label-personnel">Personnel</span>
-      <span class="label label-image">Image</span>
     </div>
   </div>
 </div>
 
-<div class="projet-card" data-categories="scolaire image" data-id="7">
+<div class="projet-card" data-categories="scolaire" data-id="7">
   <img src="BLACKPINK post LAURENT Lohim.png" alt="Description">
   <div class="projet-overlay"><span>Voir le projet</span></div>
   <div class="projet-card-body">
@@ -752,7 +798,6 @@ footer {
     <p>Utilisation de Photoshop pour créer une affiche inspirée d'un groupe.</p>
     <div class="projet-labels">
       <span class="label label-scolaire">Scolaire</span>
-      <span class="label label-image">Image</span>
     </div>
   </div>
 </div>
@@ -817,13 +862,13 @@ document.addEventListener("DOMContentLoaded", function() {
     1: {
       titre: "Plan de JPO",
       desc: "Plan interactif conçu pour les Journées Portes Ouvertes du département MMI. L'objectif était de guider les visiteurs à travers les différents espaces de manière intuitive.",
-      labels: ["Scolaire", "Image"],
+      labels: ["Scolaire"],
       image: "plan.png"
     },
     2: {
       titre: "Création Café",
       desc: "Design libre explorant l'ambiance chaleureuse d'un café. Travail sur les ombres, la lumière et la composition pour créer une atmosphère accueillante.",
-      labels: ["Personnel", "Image"],
+      labels: ["Personnel"],
       image: "cafe.png"
     },
     3: {
@@ -835,25 +880,25 @@ document.addEventListener("DOMContentLoaded", function() {
     4: {
       titre: "Rendue image animation 3D",
       desc: "Rendue image ayant pour but de vérifier mes capacités à créer une ambiance spécifique pour des animations et autre images",
-      labels: ["Personnel", "Image"],
+      labels: ["Personnel"],
       image: "The autumn sky.png"
     },
     5: {
       titre: "Rendue image animation 3D",
       desc: "Rendue image ayant pour but de tester les nouveaux modèles créer pour mes animations",
-      labels: ["Personnel", "Image"],
+      labels: ["Personnel"],
       image: "its-you.png"
     },
     6: {
       titre: "Affiche simpliste de film",
       desc: "Utilisation de Photoshop pour créer une affiche minimaliste inspirée de Men In Black 2",
-      labels: ["Personnel", "Image"],
+      labels: ["Personnel"],
       image: "Men in black LL (1).png"
     },
     7: {
       titre: "Affiche BLACKPINK",
       desc: "Création factice d'une affiche pour le groupe BLACKPINK, combinant des éléments graphiques modernes avec une esthétique inspirée de la pop culture à l'aide de Photoshop.",
-      labels: ["Scolaire", "Image"],
+      labels: ["Scolaire"],
       image: "BLACKPINK post LAURENT Lohim.png"
     },
   };
@@ -868,10 +913,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const labelsClasses = {
     "Scolaire": "label-scolaire",
-    "Personnel": "label-personnel",
-    "Animation": "label-animation",
-    "Image": "label-image",
-    "Vidéo": "label-video"
+    "Personnel": "label-personnel"
   };
 
   // Ouvrir la lightbox au clic sur une carte
@@ -913,34 +955,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') fermerLightbox();
-  });
-
-  // ========== FILTRES ==========
-  const filtreBtns = document.querySelectorAll('.filtre-btn');
-  const projetCards = document.querySelectorAll('.projet-card');
-
-  filtreBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Retirer la classe "actif" de tous les boutons
-      filtreBtns.forEach(b => b.classList.remove('actif'));
-      // Ajouter "actif" au bouton cliqué
-      this.classList.add('actif');
-
-      const filtre = this.getAttribute('data-filtre');
-
-      projetCards.forEach(card => {
-        if (filtre === 'tous') {
-          card.style.display = 'block';
-        } else {
-          const categories = card.getAttribute('data-categories');
-          if (categories && categories.includes(filtre)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        }
-      });
-    });
   });
 
 });

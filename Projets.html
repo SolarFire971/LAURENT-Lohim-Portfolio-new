@@ -790,7 +790,6 @@ footer {
   <div class="filtres">
     <button class="filtre-btn actif" data-filtre="tous">Tous</button>
     <button class="filtre-btn" data-filtre="scolaire">💼 Professionnel</button>
-    <button class="filtre-btn" data-filtre="personnel">✨ Personnel</button>
   </div>
 
   <!-- ========== GRILLE PROJETS ========== -->
@@ -862,14 +861,14 @@ footer {
   </div>
 </div>
 
-<div class="projet-card" data-categories="personnel" data-id="6">
-  <img src="Men in black LL (1).png" alt="Affiche minimaliste inspirée de l’univers noir et élégant">
+<div class="projet-card" data-categories="scolaire" data-id="6">
+  <img src="S2_story.png" alt="Affiche minimaliste inspirée de l’univers noir et élégant">
   <div class="projet-overlay"><span>Voir le projet</span></div>
   <div class="projet-card-body">
     <h3>Affiche minimaliste</h3>
     <p>Exercice de composition graphique et de stylisation sous Photoshop.</p>
     <div class="projet-labels">
-      <span class="label label-personnel">Personnel</span>
+      <span class="label label-scolaire">Professionnel</span>
     </div>
   </div>
 </div>
@@ -1124,8 +1123,8 @@ document.addEventListener("DOMContentLoaded", function() {
     6: {
       titre: "Affiche minimaliste",
       desc: "Exercice de composition graphique et de stylisation sous Photoshop, inspiré par un univers noir et élégant.",
-      labels: ["Personnel"],
-      image: "Men in black LL (1).png"
+      labels: ["Professionnel"],
+      image: "S2_story.png"
     },
     7: {
       titre: "Affiche BLACKPINK",
@@ -1218,8 +1217,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const lightboxClose = document.getElementById('lightboxClose');
 
   const labelsClasses = {
-    "Professionnel": "label-scolaire",
-    "Personnel": "label-personnel"
+    "Professionnel": "label-scolaire"
   };
 
   // Ouvrir la lightbox au clic sur une carte
